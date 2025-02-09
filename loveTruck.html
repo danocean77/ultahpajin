@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./loveTruck.css">
+    <link rel="stylesheet" href="./envelope.css">
+    <title>To my favorite person</title>
+    <style>
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: pink;
+            font-size: 1em;
+            animation: fall linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(105vh);
+            }
+        }
+
+        /* Style untuk Music Visualizer */
+        .visualizer-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 5px;
+            height: 50px;
+            align-items: flex-end;
+        }
+
+        .visualizer-bar {
+            width: 5px;
+            background: linear-gradient(to top, #ff69b4, #ff1493);
+            border-radius: 5px;
+        }
+
+        /* Style untuk Photo Gallery yang diperbarui */
+        .gallery-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: absolute;
+            transform: rotate(var(--rotation));
+            transition: all 0.3s ease;
+            width: 120px;
+            opacity: 0.8;
+        }
+
+        .polaroid:hover {
+            transform: scale(1.1) rotate(var(--rotation));
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .polaroid p {
+            text-align: center;
+            margin-top: 8px;
+            font-size: 12px;
+            font-family: 'Indie Flower', cursive;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menambahkan elemen audio dan tombol kontrol untuk musik latar -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button onclick="playPause()" style="padding: 10px; border-radius: 50%; cursor: pointer;">
+            🎵
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="./sampai.mp3" type="audio/mpeg">
+            Browser Anda tidak mendukung elemen audio.
+        </audio>
+    </div>
+
+    <!-- Music Visualizer -->
+    <div class="visualizer-container">
+        <!-- Bars will be added by JS -->
+    </div>
+
+    <!-- Photo Gallery -->
+    <div class="gallery-container">
+        <!-- Photos will be added by JS -->
+    </div>
+
+    <script>
+        var music = document.getElementById("bgMusic");
+        function playPause() {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+        // Music Visualizer
+       
+        
+
+        function updateVisualizer() {
+            const bars = document.querySelectorAll('.visualizer-bar');
+            bars.forEach(bar => {
+                const height = Math.random() * 50;
+                bar.style.height = `${height}px`;
+            });
+        }
+
+        setInterval(updateVisualizer, 100);
+
+        // Photo Gallery
+        const photos = [
+            { src: './pertama.jpg', caption: 'i miss you' },
+            { src: './kedua.jpg', caption: 'i miss you' },
+            { src: './ketiga.jpg', caption: 'i miss you' },
+            { src: './keempat.jpg', caption: 'i miss you' },
+            { src: './kelima.jpg', caption: 'i miss you' }
+        ];
+
+        function createGallery() {
+            const gallery = document.querySelector('.gallery-container');
+            const positions = [
+                { top: '5%', left: '5%' },
+                { top: '15%', right: '5%' },
+                { bottom: '10%', left: '8%' },
+                { bottom: '15%', right: '8%' },
+                { top: '40%', right: '3%' }
+            ];
+
+            photos.forEach((photo, index) => {
+                const polaroid = document.createElement('div');
+                polaroid.className = 'polaroid';
+                polaroid.style.setProperty('--rotation', `${Math.random() * 20 - 10}deg`);
+                polaroid.innerHTML = `
+                    <img src="${photo.src}" alt="${photo.caption}">
+                    <p>${photo.caption}</p>
+                `;
+
+                // Mengatur posisi berdasarkan array positions
+                Object.entries(positions[index]).forEach(([key, value]) => {
+                    polaroid.style[key] = value;
+                });
+
+                gallery.appendChild(polaroid);
+            });
+        }
+
+        // Membuat gallery saat halaman dimuat
+        window.addEventListener('load', createGallery);
+    </script>
+
+    <div class="envelope-container">
+        <div class="envelope">
+            <div class="envelope__tab"></div>
+          <div class="envelope__letter">
+                <p>tomorrow its ur bd bul, 
+                 semoga semua impian  bubul tercapai ya.
+                 i hope u'll always have a beautiful day,
+                 happy birthday sayangg💖
+                </p>
+            </div>
+          <div class="envelope--base"></div> 
+        </div>
+    </div>
+
+    <div class="truck-container">
+        <div class="container">
+            <div class="ts">
+           <div class="box"></div>
+            <div class="front">
+                
+                <div class="light"></div>
+                <div class="trapezoid"></div>
+                <div class="pipe"></div>
+                <div class="pipe2"></div>
+                <img class="img1" src="https://i.gifer.com/5zoP.gif">
+                <img class="img2" src="https://i.gifer.com/5zoP.gif">
+                <img class="img3" src="https://i.gifer.com/5zoP.gif">
+                <img class="img4" src="https://i.gifer.com/5zoP.gif">
+                <img class="img5" src="https://i.gifer.com/5zoP.gif">
+                <img class="img6" src="https://i.gifer.com/5zoP.gif">
+                <img class="img7" src="https://i.gifer.com/5zoP.gif">
+                <img class="img8" src="https://i.gifer.com/5zoP.gif">
+                <img class="img9" src="https://i.gifer.com/5zoP.gif">
+                <img class="img10" src="https://i.gifer.com/5zoP.gif">
+                <img class="img11" src="https://i.gifer.com/5zoP.gif">
+                <div class="front1"></div>
+                <div class="front2"></div>
+                <div class="window"></div>
+                 <div class="hood"></div>    
+            </div>
+             <div class="tyre1">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+             </div>
+             <div class="tyre2">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+             </div>
+             <div class="tyre3">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+             </div>
+             <div class="tyre4">
+                <div class="r1"></div>
+                <div class="r2"></div>
+                <div class="r3"></div>
+                <div class="r4"></div>
+                <div class="r5"></div>
+                <div class="r6"></div>
+             </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tambahkan container untuk gallery -->
+    <div class="gallery-container">
+        <!-- Photos will be added by JS -->
+    </div>
+</body>
+</html>
